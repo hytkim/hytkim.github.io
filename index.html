@@ -81,7 +81,7 @@ body.light-theme nav{background:rgba(240,240,238,.92);}
    상하 여백을 section(96px)과 동일하게 맞춤 ── */
 .hero{
   display:flex;align-items:center;
-  padding:96px 48px;   /* ← section과 동일 */
+  padding:96px 0;
   position:relative;overflow:hidden;
 }
 .hero>*{position:relative;z-index:1;}
@@ -93,8 +93,10 @@ body.light-theme nav{background:rgba(240,240,238,.92);}
 }
 @keyframes glow-drift{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,30px)}}
 .hero-inner{
-  max-width:1200px;   /* ← section과 동일 */
-  margin:0 auto;width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  width:100%;
+  padding:0 48px;   /* section의 좌우 padding과 동일하게 여기서 처리 */
 }
 
 /* ABOUT 제목 */
@@ -328,7 +330,8 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
 @media(max-width:768px){
   nav{padding:0 20px;}
   .nav-links{display:none;}
-  .hero{padding:72px 20px 48px;}
+  .hero{padding:72px 0;}
+  .hero-inner{padding:0 20px;}
   section{padding:60px 20px;}
   .divider{padding:0 20px;}
   footer{flex-direction:column;gap:12px;text-align:center;padding:28px 20px;}
@@ -437,7 +440,7 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
 
     <div class="project-card reveal">
       <div class="card-thumb">
-        <div class="card-thumb-placeholder"><p class="placeholder-icon">프로젝트 협업 툴</p></div>
+        <div class="card-thumb-placeholder"><p class="placeholder-icon">PF</p></div>
         <div class="card-thumb-overlay"></div>
       </div>
       <div class="card-body">
@@ -461,7 +464,7 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
 
     <div class="project-card reveal">
       <div class="card-thumb">
-        <div class="card-thumb-placeholder"><p class="placeholder-icon">지원사업 신청 프로그램</p></div>
+        <div class="card-thumb-placeholder"><p class="placeholder-icon">도움</p></div>
         <div class="card-thumb-overlay"></div>
       </div>
       <div class="card-body">
@@ -485,7 +488,7 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
 
     <div class="project-card reveal">
       <div class="card-thumb">
-        <div class="card-thumb-placeholder"><p class="placeholder-icon">MES 프로그램</p></div>
+        <div class="card-thumb-placeholder"><p class="placeholder-icon">NT</p></div>
         <div class="card-thumb-overlay"></div>
       </div>
       <div class="card-body">
@@ -516,7 +519,7 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
       <div class="slider-track" id="sliderTrack">
 
         <div class="slide">
-          <div class="slide-bg-placeholder"><p class="placeholder-icon" style="font-size:86px;opacity:.13;">프로젝트 협업 툴</p></div>
+          <div class="slide-bg-placeholder"><p class="placeholder-icon" style="font-size:86px;opacity:.13;">PF</p></div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <p class="slide-period">2026.01 &#8211; 03</p>
@@ -537,7 +540,7 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
         </div>
 
         <div class="slide">
-          <div class="slide-bg-placeholder"><p class="placeholder-icon" style="font-size:86px;opacity:.13;">지원사업 신청 프로그램</p></div>
+          <div class="slide-bg-placeholder"><p class="placeholder-icon" style="font-size:86px;opacity:.13;">도움</p></div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <p class="slide-period">2025.10 &#8211; 12</p>
@@ -558,7 +561,7 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
         </div>
 
         <div class="slide">
-          <div class="slide-bg-placeholder"><p class="placeholder-icon" style="font-size:86px;opacity:.13;">MES 프로그램</p></div>
+          <div class="slide-bg-placeholder"><p class="placeholder-icon" style="font-size:86px;opacity:.13;">NT</p></div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <p class="slide-period">2025.12</p>
@@ -649,12 +652,12 @@ footer a{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);t
 <footer>
   <p>&#169; 2026 Kim Hyun&#8209;Tae &#183; hytkim</p>
   <div class="footer-links">
-    <a href="mailto:kht01082@gmail.com">kht01082@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#4c2724387c7d7c747e0c2b212d2520622f2321"><span class="__cf_email__" data-cfemail="016a6975313031393341666c60686d2f626e6c">[email&#160;protected]</span></a>
     <a href="https://github.com/hytkim" target="_blank">github.com/hytkim &#8599;</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* 테마 */
 var toggleBtn = document.getElementById('themeToggle');
 var iconSun   = document.getElementById('iconSun');
@@ -690,22 +693,9 @@ function resetTimer(){ clearInterval(timer); timer = setInterval(function(){ goT
 resetTimer();
 
 /* 스크롤 등장 + 폴백 */
-var allReveal = document.querySelectorAll('.reveal');
-if('IntersectionObserver' in window){
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e, i){
-      if(e.isIntersecting){
-        setTimeout(function(){ e.target.classList.add('visible'); }, i * 70);
-      }
-    });
-  }, {threshold: 0, rootMargin: '0px 0px -30px 0px'});
-  allReveal.forEach(function(el){ obs.observe(el); });
-} else {
-  allReveal.forEach(function(el){ el.classList.add('visible'); });
-}
 setTimeout(function(){
-  allReveal.forEach(function(el){ el.classList.add('visible'); });
-}, 800);
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+}, 100);
 </script>
 </body>
 </html>
