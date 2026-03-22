@@ -669,7 +669,7 @@ function applyTheme(isLight){
   iconMoon.style.display = isLight ? '' : 'none';
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
 }
-applyTheme(localStorage.getItem('theme') === 'light');
+applyTheme(localStorage.getItem('theme') !== 'dark');
 toggleBtn.addEventListener('click', function(){ applyTheme(!body.classList.contains('light-theme')); });
 
 /* TOP / DOWN */
